@@ -1,7 +1,7 @@
 {
-  "name": "thai-spelling-check",
-  "displayName": "thai-spelling-check",
-  "description": "Thai spelling checker for VS Code",
+  "name": "thai-spell-check",
+  "displayName": "Thai Spell Check",
+  "description": "Thai Spell Checker for VS Code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
@@ -17,15 +17,14 @@
   "contributes": {
     "commands": [
       {
-        "command": "thai-spelling-check.reloadDictionary",
-        "title": "Thai Spelling Check: Reload Dictionary"
+        "command": "thai-spell-check.reloadDictionary",
+        "title": "Thai Spell Check: Reload Dictionary"
       }
     ],
     "configuration": {
-      "type": "object",
-      "title": "Thai Spelling Check",
+      "title": "Thai Spell Check",
       "properties": {
-        "thai-spelling-check.customWords": {
+        "thai-spell-check.customWords": {
           "type": "array",
           "description": "Custom Thai words to include in the dictionary.",
           "default": []

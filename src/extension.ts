@@ -104,7 +104,7 @@ async function loadDictionary(
 
     // Load custom words from settings
     const customWords = vscode.workspace
-      .getConfiguration("thai-spelling-check")
+      .getConfiguration("thai-spell-check")
       .get<string[]>("customWords", [])
 
     // Add custom words to dictionary
@@ -344,7 +344,7 @@ class ThaiSpellCheckCodeActionProvider implements vscode.CodeActionProvider {
       )
       addCustomWordAction.command = {
         title: "Add Custom Word",
-        command: "thai-spelling-check.addCustomWordInline",
+        command: "thai-spell-check.addCustomWordInline",
         arguments: [word],
       }
       codeActions.push(addCustomWordAction)
@@ -377,7 +377,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
   const configChangeListener = vscode.workspace.onDidChangeConfiguration(
     async (e) => {
-      if (e.affectsConfiguration("thai-spelling-check.customWords")) {
+      if (e.affectsConfiguration("thai-spell-check.customWords")) {
         statusBarItem.text = "$(loading~spin) Reloading Dictionary..."
         statusBarItem.show()
         await loadDictionary(context)
@@ -413,7 +413,7 @@ export async function activate(context: vscode.ExtensionContext) {
   }
 
   const reloadCommand = vscode.commands.registerCommand(
-    "thai-spelling-check.reloadDictionary",
+    "thai-spell-check.reloadDictionary",
     async () => {
       statusBarItem.text = "$(loading~spin) Reloading Thai Dictionary..."
       statusBarItem.show()
@@ -425,10 +425,10 @@ export async function activate(context: vscode.ExtensionContext) {
   )
 
   const addCustomWordInlineCommand = vscode.commands.registerCommand(
-    "thai-spelling-check.addCustomWordInline",
+    "thai-spell-check.addCustomWordInline",
     async (word: string) => {
       if (word && containsThai(word)) {
-        const config = vscode.workspace.getConfiguration("thai-spelling-check")
+        const config = vscode.workspace.getConfiguration("thai-spell-check")
         const customWords = config.get<string[]>("customWords", [])
         customWords.push(word.trim())
         await config.update(
