@@ -1,27 +1,37 @@
 {
   "name": "thai-spelling-check",
   "displayName": "thai-spelling-check",
-  "description": "",
+  "description": "Thai spelling checker for VS Code",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.98.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Linters"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "thai-spelling-check.checkSpelling",
-        "title": "Check Spelling"
-      },
-      {
         "command": "thai-spelling-check.reloadDictionary",
-        "title": "Reload Dictionary"
+        "title": "Thai Spelling Check: Reload Dictionary"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Thai Spelling Check",
+      "properties": {
+        "thai-spelling-check.customWords": {
+          "type": "array",
+          "description": "Custom Thai words to include in the dictionary.",
+          "default": []
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
@@ -47,6 +57,8 @@
     "@vscode/test-electron": "^2.4.1",
     "esbuild": "^0.25.0",
     "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.4",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.5.3",
     "typescript": "^5.7.3"
