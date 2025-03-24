@@ -258,8 +258,8 @@ function createDiagnostics(
 
     const diagnostic = new vscode.Diagnostic(
       range,
-      `Spelling error: "${wordInfo.word}"`,
-      vscode.DiagnosticSeverity.Warning,
+      `Unknown Thai word: "${wordInfo.word}"`,
+      vscode.DiagnosticSeverity.Information,
     )
 
     diagnostic.source = "Thai Spell Check"
