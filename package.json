@@ -2,6 +2,7 @@
   "name": "thai-spell-checker",
   "displayName": "Thai Spell Checker",
   "description": "Thai Spell Checker for VS Code",
+  "icon": "images/icon.png",
   "version": "1.0.0",
   "publisher": "3raphat",
   "repository": {
