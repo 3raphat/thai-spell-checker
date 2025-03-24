@@ -4,6 +4,10 @@ All notable changes to the "thai-spell-checker" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.3] - 2025-03-25
+
+- Update README.md
+
 ## [1.0.2] - 2025-03-25
 
 - New icon for extension
