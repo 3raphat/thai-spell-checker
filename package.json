@@ -17,6 +17,13 @@
     "Other",
     "Linters"
   ],
+  "keywords": [
+    "thai",
+    "spell",
+    "checker",
+    "spelling",
+    "spellchecker"
+  ],
   "activationEvents": [
     "onStartupFinished"
   ],
