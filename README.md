@@ -1,6 +1,6 @@
-# thai-spell-check README
+# thai-spell-checker README
 
-This is the README for your extension "thai-spell-check". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "thai-spell-checker". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
