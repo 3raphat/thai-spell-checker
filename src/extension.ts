@@ -48,11 +48,9 @@ async function loadDictionary(
   try {
     const extensionPath = context.extensionPath
     const possiblePaths = [
-      path.join(extensionPath, "wordlist.json"),
-      path.join(extensionPath, "data", "wordlist.json"),
-      path.join(extensionPath, "out", "wordlist.json"),
-      path.join(__dirname, "..", "wordlist.json"),
       path.join(__dirname, "wordlist.json"),
+      path.join(extensionPath, "dist", "wordlist.json"),
+      path.join(extensionPath, "src", "wordlist.json"),
     ]
 
     let fileData = ""
@@ -67,12 +65,16 @@ async function loadDictionary(
     if (!fileData) {
       const workspaceFolders = vscode.workspace.workspaceFolders
       if (workspaceFolders && workspaceFolders.length > 0) {
-        const workspaceFilePath = path.join(
-          workspaceFolders[0].uri.fsPath,
-          "wordlist.json",
-        )
-        if (fs.existsSync(workspaceFilePath)) {
-          fileData = fs.readFileSync(workspaceFilePath, "utf8")
+        const possibleWorkspacePaths = [
+          path.join(workspaceFolders[0].uri.fsPath, "dist", "wordlist.json"),
+          path.join(workspaceFolders[0].uri.fsPath, "src", "wordlist.json"),
+        ]
+
+        for (const workspaceFilePath of possibleWorkspacePaths) {
+          if (fs.existsSync(workspaceFilePath)) {
+            fileData = fs.readFileSync(workspaceFilePath, "utf8")
+            break
+          }
         }
       }
     }

@@ -1,4 +1,6 @@
 const esbuild = require("esbuild")
+const fs = require("fs")
+const path = require("path")
 
 const production = process.argv.includes("--production")
 const watch = process.argv.includes("--watch")
@@ -25,6 +27,42 @@ const esbuildProblemMatcherPlugin = {
   },
 }
 
+/**
+ * @type {import('esbuild').Plugin}
+ */
+const copyWordlistPlugin = {
+  name: "copy-wordlist",
+
+  setup(build) {
+    build.onEnd(() => {
+      // Source path for wordlist.json
+      const srcPath = path.join(__dirname, "src", "wordlist.json")
+      // Destination path in dist directory
+      const destPath = path.join(__dirname, "dist", "wordlist.json")
+
+      try {
+        // Check if source file exists
+        if (fs.existsSync(srcPath)) {
+          // Create the dist directory if it doesn't exist
+          if (!fs.existsSync(path.dirname(destPath))) {
+            fs.mkdirSync(path.dirname(destPath), { recursive: true })
+          }
+
+          // Copy file from src to dist
+          fs.copyFileSync(srcPath, destPath)
+          console.log(`✓ [SUCCESS] Copied wordlist.json to dist directory`)
+        } else {
+          console.error(`✘ [ERROR] Could not find src/wordlist.json file`)
+        }
+      } catch (error) {
+        console.error(
+          `✘ [ERROR] Failed to copy wordlist.json: ${error.message}`,
+        )
+      }
+    })
+  },
+}
+
 async function main() {
   const ctx = await esbuild.context({
     entryPoints: ["src/extension.ts"],
@@ -40,6 +78,7 @@ async function main() {
     plugins: [
       /* add to the end of plugins array */
       esbuildProblemMatcherPlugin,
+      copyWordlistPlugin,
     ],
   })
   if (watch) {
