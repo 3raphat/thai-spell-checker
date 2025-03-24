@@ -6,6 +6,6 @@ const config = {
   printWidth: 80,
   tabWidth: 2,
   singleQuote: false,
-};
+}
 
-export default config;
+export default config
