@@ -3,6 +3,7 @@
   "displayName": "Thai Spell Checker",
   "description": "Thai Spell Checker for VS Code",
   "version": "0.0.1",
+  "publisher": "3raphat",
   "engines": {
     "vscode": "^1.98.0"
   },
