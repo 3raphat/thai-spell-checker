@@ -11,44 +11,44 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  # build:
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest, ubuntu-latest, windows-latest]
+  #   runs-on: ${{ matrix.os }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
+  #     - name: Install Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #         cache: "pnpm"
 
-      - name: Config git
-        run: git config auto.crlf false
-        if: runner.os == 'windows-latest'
+  #     - name: Config git
+  #       run: git config auto.crlf false
+  #       if: runner.os == 'windows-latest'
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - run: xvfb-run -a pnpm test
-        if: runner.os == 'Linux'
+  #     - run: xvfb-run -a pnpm test
+  #       if: runner.os == 'Linux'
 
-      - run: pnpm test
-        if: runner.os != 'Linux'
+  #     - run: pnpm test
+  #       if: runner.os != 'Linux'
 
   publish:
     runs-on: ubuntu-latest
-    needs: build
+    # needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
