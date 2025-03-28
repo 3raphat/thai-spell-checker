@@ -3,7 +3,7 @@
   "displayName": "Thai Spell Checker",
   "description": "A Thai spell checker for VS Code",
   "icon": "images/icon.png",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "3raphat",
   "repository": {
     "type": "git",
