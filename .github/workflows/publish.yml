@@ -33,6 +33,10 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
+      - name: Config git
+        run: git config auto.crlf false
+        if: runner.os == 'windows-latest'
+
       - name: Install dependencies
         run: pnpm install
 
