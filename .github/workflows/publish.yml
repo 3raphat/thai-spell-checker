@@ -1,5 +1,8 @@
 name: Publish Extension
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
@@ -78,9 +81,12 @@ jobs:
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: ${{ steps.packageExtension.outputs.vsixPath }}
           generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Publish to Open VSX Registry
       #   uses: HaaLeo/publish-vscode-extension@v2
