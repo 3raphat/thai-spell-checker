@@ -59,7 +59,8 @@
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
     "format": "prettier --write .",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "bump": "bumpp"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -69,6 +70,7 @@
     "@typescript-eslint/parser": "^8.25.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
+    "bumpp": "^10.1.0",
     "esbuild": "^0.25.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.1.1",
